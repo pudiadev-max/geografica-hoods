@@ -6,11 +6,11 @@ Database dei confini dei quartieri di 46 città (35 italiane), usato dal livello
 ## Licenza e attribuzione
 
 - Dati: **© contributori di OpenStreetMap**, licenza [Open Database License (ODbL) 1.0](https://opendatacommons.org/licenses/odbl/1-0/)
-  (testo in `LICENSE`). Informazioni sul copyright di OSM: <https://www.openstreetmap.org/copyright>.
+  (testo in `LICENSE`, vale per `hoods.json`). Informazioni sul copyright di OSM: <https://www.openstreetmap.org/copyright>.
 - Chi riutilizza `hoods.json` deve citare OpenStreetMap, mantenere la stessa licenza per i database derivati e rendere
   disponibili le modifiche (share-alike), secondo i termini dell'ODbL.
 - Estrazione eseguita il 2026-09-30 (attraverso l'endpoint SPARQL di [QLever](https://qlever.cs.uni-freiburg.de/osm-planet) su OpenStreetMap).
-- Gli script in `pipeline/` sono pubblicati per riproducibilità; non è stata scelta una licenza per il codice.
+- **Script** in `pipeline/`: licenza **MIT** (`pipeline/LICENSE`). La licenza ODbL (`LICENSE`) riguarda i dati, la MIT il codice.
 
 ## Contenuto
 
