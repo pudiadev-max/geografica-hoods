@@ -9,7 +9,7 @@ Database dei confini dei quartieri di 46 città (35 italiane), usato dal livello
   (testo in `LICENSE`, vale per `hoods.json`). Informazioni sul copyright di OSM: <https://www.openstreetmap.org/copyright>.
 - Chi riutilizza `hoods.json` deve citare OpenStreetMap, mantenere la stessa licenza per i database derivati e rendere
   disponibili le modifiche (share-alike), secondo i termini dell'ODbL.
-- Estrazione eseguita il 2026-09-30 (attraverso l'endpoint SPARQL di [QLever](https://qlever.cs.uni-freiburg.de/osm-planet) su OpenStreetMap).
+- Estrazione eseguita il 2026-09-30; nomi `sub` aggiunti il 2026-10-01 (attraverso l'endpoint SPARQL di [QLever](https://qlever.cs.uni-freiburg.de/osm-planet) su OpenStreetMap).
 - **Script** in `pipeline/`: licenza **MIT** (`pipeline/LICENSE`). La licenza ODbL (`LICENSE`) riguarda i dati, la MIT il codice.
 
 ## Contenuto
@@ -21,7 +21,7 @@ Database dei confini dei quartieri di 46 città (35 italiane), usato dal livello
 | `slug`, `city`, `iso` | identificativo, nome (italiano), codice paese a due lettere |
 | `lat`, `lon` | centro della città (gradi) |
 | `extent` | riquadro `[x0, y0, x1, y1]` in km, nel sistema locale sotto |
-| `zones[]` | quartieri: `name`, `r` (anelli: il primo è il contorno, gli altri i buchi), `cx`/`cy` (centroide, km), `a` (area, km²) |
+| `zones[]` | quartieri: `name`, `r` (anelli: il primo è il contorno, gli altri i buchi), `cx`/`cy` (centroide, km), `a` (area, km²), `sub` (solo zone numerate: i quartieri che contiene, es. «Niguarda · Affori · Bruzzano», da luoghi OSM `place=suburb/quarter/neighbourhood`) |
 
 Le coordinate sono in **km** in una proiezione equirettangolare locale centrata su (`lat`, `lon`), con y verso nord. I contorni
 sono semplificati (tolleranza proporzionale alla dimensione della città): servono a un gioco, non alla cartografia di precisione.
@@ -39,9 +39,10 @@ il livello che copre meglio il comune senza sovrapposizioni (5–120 zone); le c
 pip install shapely
 python pipeline/60_italy_cities.py   # elenco dei comuni italiani da Wikidata (QLever)
 python pipeline/61_osm_hoods.py      # scrive app/src/main/assets/hoods.json (copia pubblicata qui in hoods.json)
+python pipeline/62_hood_names.py     # aggiunge `sub` alle zone numerate (Municipio 9 → Niguarda · Affori · ...)
 ```
 
-## Città incluse (46, 661 zone)
+## Città incluse (46, 661 zone, 121 con `sub`)
 
 | Città | Paese | Zone |
 |---|---|---|
